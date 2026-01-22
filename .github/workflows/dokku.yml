@@ -23,6 +23,4 @@ jobs:
       with:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           git_remote_url: ssh://dokku@dokku.siricrm.ru:22/dtb
-          dokku_host: 'telegram.siricrm.ru'
-          app_name: 'dtb'
           git_push_flags: '--force'
