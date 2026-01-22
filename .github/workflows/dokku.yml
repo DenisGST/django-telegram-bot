@@ -19,9 +19,10 @@ jobs:
 
     - id: deploy
       name: Deploy to dokku
-      uses: deisgst/dokku-deploy-github-action@v1
+      uses: dokku/github-action@master  # ← ОФИЦИАЛЬНЫЙ action!
       with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          git_remote_url: ssh://dokku@dokku.siricrm.ru:22/dtb
           dokku-host: 'telegram.siricrm.ru'
           app-name: 'dtb'
           git-push-flags: '--force'
