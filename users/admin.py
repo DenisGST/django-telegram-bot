@@ -11,6 +11,7 @@ from users.forms import BroadcastForm
 from users.tasks import broadcast_message
 from tgbot.handlers.broadcast_message.utils import send_one_message
 
+from telegram.constants import ParseMode
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
