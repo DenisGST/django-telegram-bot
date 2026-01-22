@@ -2,9 +2,11 @@
     Telegram event handlers
 """
 from telegram.ext import (
-    Dispatcher, Filters,
-    CommandHandler, MessageHandler,
+    Application,
+    CommandHandler,
     CallbackQueryHandler,
+    MessageHandler,
+    filters
 )
 
 from dtb.settings import DEBUG
@@ -34,14 +36,14 @@ def setup_dispatcher(dp):
 
     # location
     dp.add_handler(CommandHandler("ask_location", location_handlers.ask_for_location))
-    dp.add_handler(MessageHandler(Filters.location, location_handlers.location_handler))
+    dp.add_handler(MessageHandler(filters.location, location_handlers.location_handler))
 
     # secret level
     dp.add_handler(CallbackQueryHandler(onboarding_handlers.secret_level, pattern=f"^{SECRET_LEVEL_BUTTON}"))
 
     # broadcast message
     dp.add_handler(
-        MessageHandler(Filters.regex(rf'^{broadcast_command}(/s)?.*'), broadcast_handlers.broadcast_command_with_message)
+        MessageHandler(filters.regex(rf'^{broadcast_command}(/s)?.*'), broadcast_handlers.broadcast_command_with_message)
     )
     dp.add_handler(
         CallbackQueryHandler(broadcast_handlers.broadcast_decision_handler, pattern=f"^{CONFIRM_DECLINE_BROADCAST}")
@@ -49,7 +51,7 @@ def setup_dispatcher(dp):
 
     # files
     dp.add_handler(MessageHandler(
-        Filters.animation, files.show_file_id,
+        filters.animation, files.show_file_id,
     ))
 
     # handling errors
@@ -71,4 +73,4 @@ def setup_dispatcher(dp):
 
 
 n_workers = 0 if DEBUG else 4
-dispatcher = setup_dispatcher(Dispatcher(bot, update_queue=None, workers=n_workers, use_context=True))
+application = setup_dispatcher(Application(bot, update_queue=None, workers=n_workers, use_context=True))
