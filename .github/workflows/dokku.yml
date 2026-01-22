@@ -17,7 +17,7 @@ jobs:
 
     - id: deploy
       name: Deploy to dokku
-      uses: idoberko2/dokku-deploy-github-action@v1
+      uses: deisgst/dokku-deploy-github-action@v1
       with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           dokku-host: 'telegram.siricrm.ru'
