@@ -19,7 +19,8 @@ from tgbot.handlers.admin import handlers as admin_handlers
 from tgbot.handlers.location import handlers as location_handlers
 from tgbot.handlers.onboarding import handlers as onboarding_handlers
 from tgbot.handlers.broadcast_message import handlers as broadcast_handlers
-from tgbot.main import bot
+
+import os
 
 
 def setup_dispatcher(dp):
@@ -73,4 +74,4 @@ def setup_dispatcher(dp):
 
 
 n_workers = 0 if DEBUG else 4
-application = setup_dispatcher(Application(bot, update_queue=None, workers=n_workers, use_context=True))
+application = application = Application.builder().token(os.getenv("1173767168:AAGVVFXOipqdxmx9GH7KPeMJ4sbVVUEiT-U")).build()
