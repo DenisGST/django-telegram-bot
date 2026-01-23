@@ -78,3 +78,6 @@ application = application = Application.builder().token(os.getenv("TELEGRAM_BOT_
 dispatcher = application
 
 __all__ = ['dispatcher', 'application']
+
+if __name__ == "__main__":
+    print("Dispatcher ready!")
