@@ -75,3 +75,6 @@ def setup_dispatcher(dp):
 
 n_workers = 0 if DEBUG else 4
 application = application = Application.builder().token(os.getenv("TELEGRAM_BOT_TOKEN")).build()
+dispatcher = application
+
+__all__ = ['dispatcher', 'application']
